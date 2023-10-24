@@ -12,24 +12,41 @@ interface Product {
   img?: string;
 }
 
+const ProductImage = ({ img = "" }) => {
+  return <img className={styles.productImg} src={img ? img : ImageNotFound} alt="Product image" />;
+};
+
+const ProductTitle = ({ title }: { title: string }) => {
+  return <span className={styles.productDescription}>{title}</span>;
+};
+
+interface ProductButtonsProps {
+  counter: number;
+  increseBy: (value: number) => void;
+}
+
+const ProductButtons = ({ counter, increseBy }: ProductButtonsProps) => {
+  return (
+    <div className={styles.buttonsContainer}>
+      <button className={styles.buttonMinus} onClick={() => increseBy(-1)}>
+        -
+      </button>
+      <div className={styles.countLabel}>{counter}</div>
+      <button className={styles.buttonAdd} onClick={() => increseBy(1)}>
+        +
+      </button>
+    </div>
+  );
+};
+
 const ProductCard = ({ product }: ProductProps) => {
   const { counter, increseBy } = useProduct();
 
   return (
     <div className={styles.productCard}>
-      <img className={styles.productImg} src={product.img ? product.img : ImageNotFound} alt="Coffe Mug" />
-      {/* <img className={styles.productImg} src="./coffee-mug.png" alt="Coffe Mug" /> */}
-
-      <span className={styles.productDescription}>{product.title}</span>
-      <div className={styles.buttonsContainer}>
-        <button className={styles.buttonMinus} onClick={() => increseBy(-1)}>
-          -
-        </button>
-        <div className={styles.countLabel}>{counter}</div>
-        <button className={styles.buttonAdd} onClick={() => increseBy(1)}>
-          +
-        </button>
-      </div>
+      <ProductImage img={product.img} />
+      <ProductTitle title={product.title} />
+      <ProductButtons counter={counter} increseBy={increseBy} />
     </div>
   );
 };
