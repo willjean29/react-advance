@@ -1,6 +1,7 @@
 import { BrowserRouter, NavLink, Navigate, Route, Routes } from "react-router-dom";
 import logo from "../assets/react.svg";
-import { LazyPage1, LazyPage2, LazyPage3 } from "../lazyload/pages";
+import ShoppingPage from "../component-patterns/pages/ShoppingPage";
+
 const Navigation = () => {
   return (
     <BrowserRouter>
@@ -9,7 +10,7 @@ const Navigation = () => {
           <img className="logo" src={logo} alt="react logo" width={100} height={100} />
           <ul>
             <li>
-              <NavLink to="/lazy1" className={({ isActive }) => (isActive ? "nav-active" : "")}>
+              <NavLink to="/shopping" className={({ isActive }) => (isActive ? "nav-active" : "")}>
                 Lazy 1
               </NavLink>
             </li>
@@ -26,10 +27,10 @@ const Navigation = () => {
           </ul>
         </nav>
         <Routes>
-          <Route path="/lazy1" element={<LazyPage1 />} />
-          <Route path="/lazy2" element={<LazyPage2 />} />
-          <Route path="/lazy3" element={<LazyPage3 />} />
-          <Route path="/*" element={<Navigate to="/lazy1" replace />} />
+          <Route path="/shopping" element={<ShoppingPage />} />
+          {/* <Route path="/lazy2" element={<LazyPage2 />} />
+          <Route path="/lazy3" element={<LazyPage3 />} /> */}
+          <Route path="/*" element={<Navigate to="/shopping" replace />} />
         </Routes>
       </div>
     </BrowserRouter>
