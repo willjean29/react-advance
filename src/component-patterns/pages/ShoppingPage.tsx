@@ -1,4 +1,4 @@
-import ProductCard from "../components/ProductCard";
+import ProductCard, { ProductImage, ProductTitle, ProductButtons } from "../components/ProductCard";
 
 const product = {
   id: "1",
@@ -18,7 +18,17 @@ const ShoppingPage = () => {
           flexWrap: "wrap",
         }}
       >
-        <ProductCard product={product} />
+        <ProductCard product={product}>
+          <ProductImage />
+          <ProductTitle />
+          <ProductButtons />
+        </ProductCard>
+
+        <ProductCard product={product}>
+          <ProductCard.Image />
+          <ProductCard.Title />
+          <ProductCard.Buttons />
+        </ProductCard>
       </div>
     </div>
   );
